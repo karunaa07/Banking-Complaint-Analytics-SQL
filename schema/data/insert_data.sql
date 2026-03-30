@@ -70,6 +70,13 @@ VALUES
 (2,2,'2024-01-06'),
 (3,3,'2024-01-07');
 
+INSERT INTO departments (department_name) VALUES
+('Customer Support'),
+('Fraud Investigation'),
+('Loan Department'),
+('Technical Support'),
+('UPI Operations');
+
 INSERT INTO complaints
 (customer_id, bank_id, category_id, priority_id, status_id, complaint_date, description)
 SELECT
