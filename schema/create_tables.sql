@@ -51,3 +51,35 @@ FOREIGN KEY (category_id) REFERENCES complaint_categories(category_id),
 FOREIGN KEY (priority_id) REFERENCES complaint_priority(priority_id),
 FOREIGN KEY (status_id) REFERENCES complaint_status(status_id)
 );
+
+CREATE TABLE departments (
+department_id INT AUTO_INCREMENT PRIMARY KEY,
+department_name VARCHAR(100)
+);
+
+CREATE TABLE employees (
+employee_id INT AUTO_INCREMENT PRIMARY KEY,
+employee_name VARCHAR(100),
+department_id INT,
+email VARCHAR(100),
+FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+CREATE TABLE complaint_assignments (
+assignment_id INT AUTO_INCREMENT PRIMARY KEY,
+complaint_id INT,
+employee_id INT,
+assigned_date DATE,
+FOREIGN KEY (complaint_id) REFERENCES complaints(complaint_id),
+FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+);
+
+CREATE TABLE complaint_history (
+history_id INT AUTO_INCREMENT PRIMARY KEY,
+complaint_id INT,
+old_status INT,
+new_status INT,
+changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (complaint_id) REFERENCES complaints(complaint_id)
+);
+
